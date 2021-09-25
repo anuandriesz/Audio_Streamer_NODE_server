@@ -1,0 +1,15 @@
+{
+  "name": "websocket-server",
+  "version": "1.0.0",
+  "description": "test-web-socket-server",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "anuradha",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "ws": "^8.2.2"
+  }
+}
