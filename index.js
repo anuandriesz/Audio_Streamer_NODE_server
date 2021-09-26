@@ -15,16 +15,27 @@ wss.on('connection', (ws) => {
 
     ws.on('close', () => { console.log('[Server] Client disconnected.') });
 
-    ws.on('message', (message) => {
-        console.log('[Server] Received message: %s', message);
+    // ws.on('message', (message) => {
+    //     console.log('[Server] Received message: %s', message);
        
-        // broadcast to everyone else connected
-        wss.clients.forEach(function each(client) {
-            if (client !== ws && client.readyState === WebSocket.OPEN) {
-                client.send(message);
-            }
-        });
+    //     // broadcast to everyone else connected
+    //     wss.clients.forEach(function each(client) {
+    //         if ( client.readyState === WebSocket.OPEN) {
+            
+    //             client.send("Hello from server");
+    //         }
+    //     });
 
-    });
+    // });
+
+      ws.on('message', function incoming(data, isBinary) {
+        console.log('[Server] Received Audio data: %s');
+        wss.clients.forEach(function each(client) {
+          if (client.readyState === WebSocket.OPEN) {
+            console.log('[Server] sending audio data');
+            client.send(data);
+          }
+        });
+      });
 
 });
