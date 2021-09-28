@@ -29,7 +29,7 @@ wss.on('connection', (ws) => {
     // });
 
       ws.on('message', function incoming(data, isBinary) {
-        console.log('[Server] Received Audio data: %s');
+        console.log('[Server] Received Audio data: %s',data);
         wss.clients.forEach(function each(client) {
           if (client.readyState === WebSocket.OPEN) {
             console.log('[Server] sending audio data');
